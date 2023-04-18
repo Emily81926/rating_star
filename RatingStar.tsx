@@ -1,31 +1,47 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
 import HalfStar from "./HalfStar";
 
 interface StarProps {
   rating: number;
+  readOnly?: boolean;
+  onChange?: (rating: number) => void;
 }
 
-export default function RatingStar({ rating }: StarProps) {
-  let remain = rating;
+export default function RatingStar({
+  rating,
+  onChange,
+  readOnly = true,
+}: StarProps) {
+  const [options, setOptions] = useState<number[]>([]);
 
-  const options = new Array(5).fill(undefined).map(() => {
-    // console.log(remain);
+  console.log("🚀 ~ file: RatingStar.tsx:17 ~ options:", options);
 
-    if (remain < 0) {
-      return 0;
-    }
+  useEffect(() => {
+    setOptions(createOptions(rating));
+  }, [rating]);
 
-    remain -= 1;
+  function createOptions(rating: number): number[] {
+    let remain = rating;
 
-    if (remain > 0) {
-      return 1;
-    }
+    return new Array(5).fill(undefined).map((_, index) => {
+      console.log(index, remain);
 
-    return 0.5;
-  });
+      if (remain <= 0) {
+        return 0;
+      }
 
-//   console.log(options);
+      remain -= 1;
+
+      if (remain >= 0) {
+        return 1;
+      }
+
+      return 0.5;
+    });
+  }
+
+  //   console.log(options);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -36,12 +52,24 @@ export default function RatingStar({ rating }: StarProps) {
         <View style={styles.stars}>
           {options.map((value, index) => {
             return (
-              <HalfStar
+              <Pressable
                 key={index}
-                style={styles.star}
-                isEmpty={value === 0}
-                isHalf={value === 0.5}
-              />
+                onPress={
+                  readOnly
+                    ? undefined
+                    : () => {
+                        if (onChange) {
+                          onChange(index + 1);
+                        }
+                      }
+                }
+              >
+                <HalfStar
+                  style={styles.star}
+                  isEmpty={value === 0}
+                  // isHalf={value === 0.5}
+                />
+              </Pressable>
             );
           })}
         </View>

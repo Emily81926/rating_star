@@ -7,7 +7,7 @@ import Svg, {
   G,
   Path,
 } from "react-native-svg";
-
+import { TouchableWithoutFeedback } from "react-native";
 
 interface HalfStarProps extends SvgProps {
   isEmpty: boolean;
@@ -32,19 +32,21 @@ const HalfStar = (props: HalfStarProps) => {
     : color;
 
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" {...props}>
-      <Defs>
-        <LinearGradient id="a">
-          <Stop offset="0%" stopColor={starFilledColor} />
-          <Stop offset="50%" stopColor={starFilledColor} />
-          <Stop offset="50%" stopColor={halfStarFilledColor} />
-          <Stop offset="100%" stopColor={halfStarFilledColor} />
-        </LinearGradient>
-      </Defs>
-      <G fill="url(#a)" stroke="none" strokeWidth={2}>
-        <Path d="M12 2l-3.547 7.192-7.953.846 5.744 5.238-1.361 7.724L12 18.013l6.117 3.987-1.361-7.724 5.744-5.238-7.953-.846z" />
-      </G>
-    </Svg>
+    <TouchableWithoutFeedback>
+      <Svg width={24} height={24} viewBox="0 0 24 24" {...props}>
+        <Defs>
+          <LinearGradient id="a">
+            <Stop offset="0%" stopColor={starFilledColor} />
+            <Stop offset="50%" stopColor={starFilledColor} />
+            <Stop offset="50%" stopColor={halfStarFilledColor} />
+            <Stop offset="100%" stopColor={halfStarFilledColor} />
+          </LinearGradient>
+        </Defs>
+        <G fill="url(#a)" stroke="none" strokeWidth={2}>
+          <Path d="M12 2l-3.547 7.192-7.953.846 5.744 5.238-1.361 7.724L12 18.013l6.117 3.987-1.361-7.724 5.744-5.238-7.953-.846z" />
+        </G>
+      </Svg>
+    </TouchableWithoutFeedback>
   );
 };
 
