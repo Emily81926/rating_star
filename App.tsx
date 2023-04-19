@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import Star from "./Star";
 import RatingStar from "./RatingStar";
-import HalfStar from "./HalfStar";
 import { useState } from "react";
 
 export default function App() {
@@ -13,9 +12,9 @@ export default function App() {
     <View style={styles.container}>
       {/* <Star /> */}
       {/* for info.tsx */}
-      <RatingStar rating={4.5} size={16}/>
+      <RatingStar rating={2.1} size={16} />
       {/* for ReviewCard.tsx */}
-      <RatingStar rating={4.5} size={16} />
+      <RatingStar rating={3} size={16} />
       {/* for rating selector.tsx */}
       <RatingStar rating={rating} readOnly={false} onChange={setRating} size={20}/>
     </View>

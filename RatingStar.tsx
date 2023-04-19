@@ -7,13 +7,15 @@ interface StarProps {
   readOnly?: boolean;
   onChange?: (rating: number) => void;
   size?: number;
+  gap?: number;
 }
 
 export default function RatingStar({
   rating,
   onChange,
   readOnly = true,
-  size = 24
+  size = 24,
+  gap = 4,
 }: StarProps) {
   const [options, setOptions] = useState<number[]>([]);
 
@@ -67,11 +69,11 @@ export default function RatingStar({
                 }
               >
                 <HalfStar
-                  style={styles.star}
+                  style={{ marginRight: gap}}
                   isEmpty={value === 0}
-                  width = {size}
+                  width={size}
                   height={size}
-                  // isHalf={value === 0.5}
+                  isHalf={value === 0.5}
                 />
               </Pressable>
             );
@@ -98,8 +100,5 @@ const styles = StyleSheet.create({
   stars: {
     display: "flex",
     flexDirection: "row",
-  },
-  star: {
-    marginRight: 4,
   },
 });
