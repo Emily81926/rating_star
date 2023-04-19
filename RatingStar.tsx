@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
 import HalfStar from "./HalfStar";
 
+// const colors = {
+//   "0": "red",
+//   "1": "green",
+//   "2": "yellow",
+//   "3": "orange",
+//   "4": "blue",
+// };
+
 interface StarProps {
   rating: number;
   readOnly?: boolean;
@@ -58,6 +66,13 @@ export default function RatingStar({
             return (
               <Pressable
                 key={index}
+                // hitSlop={}
+                style={{
+                  // backgroundColor: colors[String(index)] ?? "black",
+                  alignItems: "center",
+                  justifyContent: "center",
+                 paddingHorizontal: gap / 2,
+                }}
                 onPress={
                   readOnly
                     ? undefined
@@ -68,13 +83,14 @@ export default function RatingStar({
                       }
                 }
               >
-                <HalfStar
-                  style={{ marginRight: gap}}
-                  isEmpty={value === 0}
-                  width={size}
-                  height={size}
-                  isHalf={value === 0.5}
-                />
+                <View pointerEvents="none">
+                  <HalfStar
+                    isEmpty={value === 0}
+                    width={size}
+                    height={size}
+                    isHalf={value === 0.5}
+                  />
+                </View>
               </Pressable>
             );
           })}

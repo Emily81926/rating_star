@@ -10,13 +10,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <Star /> */}
+      <Star />
       {/* for info.tsx */}
       <RatingStar rating={2.1} size={16} />
       {/* for ReviewCard.tsx */}
       <RatingStar rating={3} size={16} />
       {/* for rating selector.tsx */}
-      <RatingStar rating={rating} readOnly={false} onChange={setRating} size={20}/>
+      <RatingStar rating={rating} readOnly={false} onChange={setRating} size={30} />
     </View>
   );
 }
