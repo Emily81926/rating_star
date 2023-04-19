@@ -33,7 +33,7 @@ const HalfStar = (props: HalfStarProps) => {
 
   return (
     <TouchableWithoutFeedback>
-      <Svg width={24} height={24} viewBox="0 0 24 24" {...props}>
+      <Svg viewBox="0 0 24 24" {...props}>
         <Defs>
           <LinearGradient id="a">
             <Stop offset="0%" stopColor={starFilledColor} />

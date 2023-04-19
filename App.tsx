@@ -11,9 +11,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Star />
-      <RatingStar rating={3.2} />
-      <RatingStar rating={rating} readOnly={false} onChange={setRating} />
+      {/* <Star /> */}
+      {/* for info.tsx */}
+      <RatingStar rating={4.5} size={16}/>
+      {/* for ReviewCard.tsx */}
+      <RatingStar rating={4.5} size={16} />
+      {/* for rating selector.tsx */}
+      <RatingStar rating={rating} readOnly={false} onChange={setRating} size={20}/>
     </View>
   );
 }

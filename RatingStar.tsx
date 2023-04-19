@@ -6,12 +6,14 @@ interface StarProps {
   rating: number;
   readOnly?: boolean;
   onChange?: (rating: number) => void;
+  size?: number;
 }
 
 export default function RatingStar({
   rating,
   onChange,
   readOnly = true,
+  size = 24
 }: StarProps) {
   const [options, setOptions] = useState<number[]>([]);
 
@@ -67,6 +69,8 @@ export default function RatingStar({
                 <HalfStar
                   style={styles.star}
                   isEmpty={value === 0}
+                  width = {size}
+                  height={size}
                   // isHalf={value === 0.5}
                 />
               </Pressable>
